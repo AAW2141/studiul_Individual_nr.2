@@ -5,7 +5,7 @@ $capsule=new Capsule();
 $capsule->addConnection([
     'driver' => 'mysql',
     'host' => 'localhost',
-    'database' => 'aaw_slim_lucruindividual_2',
+    'database' => 'aaw_studiuindividual_2',
     'username'=> 'root',
     'password'=> '',
     'chrest' => 'utf8',

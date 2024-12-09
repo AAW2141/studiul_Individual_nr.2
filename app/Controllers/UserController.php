@@ -73,7 +73,7 @@ class UserController
     $user->parola = password_hash($parola, PASSWORD_BCRYPT);
 
     // Atribuim rolul de admin doar dacă emailul este cel specificat
-    if ($email === 'arnautu.cristian@elev.cihcahul.md') {
+    if ($email === 'susanu.alexandru@elev.cihcahul.md') {
         $user->role = 'admin';
     } else {
         $user->role = 'user';  // Restul utilizatorilor vor avea rolul 'user'

@@ -1,16 +1,16 @@
 <?php
 use App\Controllers\UserController;
-use App\Controllers\ArticleController;
-// Rutele pentru ProductController
-$app->redirect('/', '/articole');
-$app->get('/articole', [ArticleController::class, 'index']);
-$app->get('/articole/create', [ArticleController::class, 'create']);
-$app->post('/articole/store', [ArticleController::class, 'store']);
-$app->get('/articole/edit/{id}', [ArticleController::class, 'edit']);
-$app->put('/articole/update/{id}', [ArticleController::class, 'update']);
-$app->delete('/articole/delete/{id}', [ArticleController::class, 'delete']);
-$app->get('/articole/show/{id}', [ArticleController::class, 'show']);
+use App\Controllers\SectionController;
 
+// Rutele pentru SectionController
+$app->redirect('/', '/sections');
+$app->get('/sections', [SectionController::class, 'index']);
+$app->get('/sections/create', [SectionController::class, 'create']);
+$app->post('/sections/store', [SectionController::class, 'store']);
+$app->get('/sections/edit/{id}', [SectionController::class, 'edit']);
+$app->put('/sections/update/{id}', [SectionController::class, 'update']);
+$app->delete('/sections/delete/{id}', [SectionController::class, 'delete']);
+$app->get('/sections/show/{id}', [SectionController::class, 'show']);
 
 // Rutele pentru UserController
 $app->get('/users/login', [UserController::class, 'login']);

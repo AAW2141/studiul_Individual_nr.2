@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create New Article</title>
+    <title>Create New Section</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <style>
         body {
@@ -12,7 +12,7 @@
             font-family: 'Arial', sans-serif;
         }
 
-        .container.c {
+        .container.col {
             margin-top: 50px;
         }
 
@@ -89,25 +89,25 @@
 
     <?php include '../views/navbar.php'; ?>
 
-    <div class="container c">
+    <div class="container col">
         <div class="row py-2 justify-content-center h5">
-            <h3 class="text-center">Create New Article</h3>
+            <h3 class="text-center">Create New Section</h3>
         </div>
         <div class="row">
             <div class="col-md-8 offset-md-2 form-container">
-                <!-- Formular pentru crearea articolului -->
-                <form action="/articole/store" method="POST">
+                <!-- Formular pentru crearea secțiunii -->
+                <form action="/sections/store" method="POST">
                     <div class="mb-3">
-                        <label for="title">Article Title</label>
-                        <input type="text" name="title" id="title" class="form-control" placeholder="Enter article title"
+                        <label for="title">Section Title</label>
+                        <input type="text" name="title" id="title" class="form-control" placeholder="Enter section title"
                             required>
                     </div>
                     <div class="mb-3">
-                        <label for="content">Article Content</label>
-                        <textarea name="content" id="content" class="form-control" rows="6"
-                            placeholder="Enter article content" required></textarea>
+                        <label for="content">Section Content</label>
+                        <textarea name="content" id="content" class="form-control" rows="6" placeholder="Enter section content" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-dark btn-sm">Save Article</button>
+
+                    <button type="submit" class="btn btn-dark btn-sm">Save Section</button>
                 </form>
             </div>
         </div>

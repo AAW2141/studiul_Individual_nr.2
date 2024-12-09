@@ -4,26 +4,25 @@ namespace App\Controllers;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use App\Models\Article;
+use App\Models\Section;
 use App\Models\User;
 
-class ArticleController
+class SectionController
 {
-    // Listare articole
+    // Listare secțiuni
     public function index(Request $request, Response $response, $args)
     {
-        // Obține toate articolele
-        $articles = Article::all();
+        // Obține toate secțiunile
+        $sections = Section::all();
 
         ob_start();
-        require '../views/articles/index.php';
+        require '../views/sections/index.php';
         $html = ob_get_clean();
         $response->getBody()->write($html);
         return $response;
     }
 
-    // Formular pentru creare articol
-    // Formular pentru creare articol
+    // Formular pentru creare secțiune
     public function create(Request $request, Response $response, $args)
     {
         session_start();
@@ -31,31 +30,30 @@ class ArticleController
 
         // Verifică dacă utilizatorul este autentificat și este admin
         if (!$userId || User::find($userId)->role !== 'admin') {
-            // Afișează un mesaj de eroare
-            $errorMessage = "Acces interzis! Trebuie să fii administrator pentru a crea un articol.";
+            $errorMessage = "Acces interzis! Trebuie să fii administrator pentru a crea o secțiune.";
 
             ob_start();
-            require '../views/errors/access_denied.php'; // Aici adaugi o pagină de eroare personalizată
+            require '../views/errors/access_denied.php'; 
             $html = ob_get_clean();
             $response->getBody()->write($html);
             return $response;
         }
 
         ob_start();
-        require '../views/articles/create.php';
+        require '../views/sections/create.php';
         $html = ob_get_clean();
         $response->getBody()->write($html);
         return $response;
     }
 
-    // Creare articol
+    // Creare secțiune
     public function store(Request $request, Response $response, $args)
     {
         // Preia datele din formular
-        $articleData = $request->getParsedBody();
+        $sectionData = $request->getParsedBody();
 
-        // Creează articolul
-        Article::create($articleData);
+        // Creează secțiunea
+        Section::create($sectionData);
 
         // Redirecționează utilizatorul
         return $response
@@ -63,51 +61,51 @@ class ArticleController
             ->withStatus(302);
     }
 
-    // Formular pentru editare articol
+    // Formular pentru editare secțiune
     public function edit(Request $request, Response $response, $args)
     {
-        $article = Article::find($args['id']);
+        $section = Section::find($args['id']);
 
         ob_start();
-        require '../views/articles/edit.php';
+        require '../views/sections/edit.php';
         $html = ob_get_clean();
         $response->getBody()->write($html);
         return $response;
     }
 
-    // Actualizare articol
+    // Actualizare secțiune
     public function update(Request $request, Response $response, $args)
     {
         $data = $request->getParsedBody();
-        $article = Article::find($args['id']);
+        $section = Section::find($args['id']);
 
-        // Actualizează articolul cu noile date
-        $article->fill($data);
-        $article->save();
+        // Actualizează secțiunea cu noile date
+        $section->fill($data);
+        $section->save();
 
         // Redirecționează utilizatorul
         return $response
-            ->withHeader('Location', '/articole')
+            ->withHeader('Location', '/sections')
             ->withStatus(302);
     }
 
-    // Ștergere articol
+    // Ștergere secțiune
     public function delete(Request $request, Response $response, $args)
     {
-        $article = Article::find($args['id']);
-        $article->delete();
+        $section = Section::find($args['id']);
+        $section->delete();
 
         return $response
-            ->withHeader('Location', '/articole')
+            ->withHeader('Location', '/sections')
             ->withStatus(302);
     }
 
-    // Afișare detalii articol
+    // Afișare detalii secțiune
     public function show(Request $request, Response $response, $args)
     {
-        $article = Article::find($args['id']);
+        $section = Section::find($args['id']);
         ob_start();
-        require '../views/articles/details.php';
+        require '../views/sections/details.php';
         $html = ob_get_clean();
         $response->getBody()->write($html);
         return $response;

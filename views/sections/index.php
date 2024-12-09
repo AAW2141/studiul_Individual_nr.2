@@ -8,17 +8,17 @@ use App\Models\User;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Article List</title>
+    <title>Section List</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #f4f6f9;
+            background-color: #f8f9fa;
             font-family: 'Arial', sans-serif;
             margin-top: 30px;
         }
 
         .btn {
-            width: 100px;
+            width: 120px;
             font-size: 1rem;
             font-weight: bold;
             text-transform: uppercase;
@@ -31,18 +31,15 @@ use App\Models\User;
             box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
         }
 
-        /* Card cu dimensiuni fixe */
+        /* Card cu dimensiuni fixe și stil îmbunătățit */
         .card {
             width: 320px;
-            /* Lățimea fixă a cardului */
-            height: 340px;
-            /* Înălțimea fixă a cardului */
+            height: 380px;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease-in-out;
-            background: #fff;
-            /* Fundal alb pentru card */
+            background: linear-gradient(to right, #e0e0e0, #f8f9fa);
         }
 
         .card:hover {
@@ -52,17 +49,16 @@ use App\Models\User;
 
         .card-body {
             padding: 20px;
-            background-color: #fff;
             text-align: center;
-            overflow: hidden;
-            width: 320px;
+            background-color: #ffffff;
             height: 250px;
+            overflow: hidden;
         }
 
         .card-title {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: bold;
-            color: #333;
+            color: #007bff;
             margin-bottom: 15px;
         }
 
@@ -71,12 +67,9 @@ use App\Models\User;
             color: #555;
             margin-bottom: 20px;
             text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 4;
-            -webkit-box-orient: vertical;
+            display: flex;
             overflow: hidden;
             height: 100px;
-            /* Ajustează în funcție de cât conținut vrei să afișezi */
         }
 
         .row {
@@ -93,7 +86,7 @@ use App\Models\User;
         .product-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: center;
             gap: 30px;
         }
 
@@ -113,58 +106,88 @@ use App\Models\User;
         .card-footer a {
             text-decoration: none;
             color: #007bff;
+            transition: color 0.3s ease;
         }
 
         .card-footer a:hover {
+            color: #0056b3;
             text-decoration: underline;
         }
 
         .butoanele {
             padding: 10px;
+            gap: 10px;
+        }
+
+        /* Butoane cu culoare uniformă și margini rotunjite */
+        .btn-warning,
+        .btn-danger,
+        .btn-primary {
+            background-color: #ffc107;
+            border-radius: 20px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn-warning:hover {
+            background-color: #ffca2c;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background-color: #d92c3a;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
         }
     </style>
+       
 </head>
 
 <body>
     <?php include '../views/navbar.php'; ?>
 
     <div class="container">
-        <!-- Products Section -->
+        <!-- Sections Section -->
         <div class="product-container">
-            <?php if (count($articles) > 0): ?>
-                <?php foreach ($articles as $article): ?>
+            <?php if (count($sections) > 0): ?>
+                <?php foreach ($sections as $section): ?>
                     <div class="col-md-4 mb-4">
                         <div class="card shadow-sm">
                             <!-- Card body -->
                             <div class="card-body">
-                                <h5 class="card-title"><?= htmlspecialchars($article->title) ?></h5>
+                                <h5 class="card-title"><?= htmlspecialchars($section->title) ?></h5>
                                 <p class="card-text">
-                                    <?= htmlspecialchars(substr($article->content, 0, 200)) ?>...
+                                    <?= htmlspecialchars(substr($section->content, 0, 200)) ?>...
                                     <!-- Afișează doar primele 200 de caractere -->
                                 </p>
 
                             </div>
                             <div class="butoanele d-flex justify-content-between">
                                 <?php if (isset($_SESSION['user_id']) && User::find($_SESSION['user_id'])->isAdmin()): ?>
-                                    <a href="/articole/edit/<?= $article->id ?>" class="btn btn-warning">Edit</a>
-                                    <form action="/articole/delete/<?= $article->id ?>" method="POST" class="d-inline"
+                                    <a href="/sections/edit/<?= $section->id ?>" class="btn btn-warning">Edit</a>
+                                    <form action="/sections/delete/<?= $section->id ?>" method="POST" class="d-inline"
                                         onsubmit="return confirmDelete()">
                                         <input type="hidden" name="_METHOD" value="DELETE" />
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
                                 <?php endif; ?>
-                                <a href="/articole/show/<?= $article->id ?>" class="btn btn-primary">Details</a>
+                                <a href="/sections/show/<?= $section->id ?>" class="btn btn-primary">Details</a>
                             </div>
-                            <!-- Card footer -->
-                            <div class="card-footer">
-                                <small>Added on: <?= date('d M Y', strtotime($article->created_at)) ?></small>
-                            </div>
+                           
                         </div>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
                 <div class="col-12 no-products">
-                    <p>No articles available</p>
+                    <p>No sections available</p>
                 </div>
             <?php endif; ?>
         </div>
@@ -172,7 +195,7 @@ use App\Models\User;
 
     <script>
         function confirmDelete() {
-            return confirm("Esti sigur că vrei să ștergi acest articol?");
+            return confirm("Esti sigur că vrei să ștergi această secțiune?");
         }
     </script>
 </body>

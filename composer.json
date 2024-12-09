@@ -1,5 +1,5 @@
 {
-    "name": "aaw/lucru_individual_nr2",
+    "name": "aaw/studiu_individual_nr2",
     "autoload": {
         "psr-4": {
             "App\\": "app/"

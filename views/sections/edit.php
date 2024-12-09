@@ -7,7 +7,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Article</title>
+    <title>Edit Section</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <style>
         body {
@@ -87,24 +87,24 @@ session_start();
 
     <div class="container c">
         <div class="row py-2 justify-content-center h5">
-            <h3 class="text-center">Edit Article</h3>
+            <h3 class="text-center">Edit Section</h3>
         </div>
         <div class="row">
             <div class="col-md-8 m-auto form-container">
-                <!-- Formular pentru editarea articolului -->
-                <form action="/articole/update/<?= $article->id ?>" method="post">
+                <!-- Formular pentru editarea secțiunii -->
+                <form action="/sections/update/<?= $section->id ?>" method="post">
                     <input type="hidden" name="_METHOD" value="PUT" />
                     <div class="mb-3">
-                        <label for="title">Article Title</label>
-                        <input type="text" name="title" id="title" class="form-control" value="<?= $article->title ?>"
-                            placeholder="Enter article title" required>
+                        <label for="title">Section Title</label>
+                        <input type="text" name="title" id="title" class="form-control" value="<?= $section->title ?>"
+                            placeholder="Enter section title" required>
                     </div>
                     <div class="mb-3">
-                        <label for="content">Article Content</label>
+                        <label for="content">Section Content</label>
                         <textarea name="content" id="content" class="form-control" rows="6"
-                            placeholder="Enter article content" required><?= $article->content ?></textarea>
+                            placeholder="Enter section content" required><?= $section->content ?></textarea>
                     </div>
-                    <button type="submit" class="btn btn-dark btn-sm">Update Article</button>
+                    <button type="submit" class="btn btn-dark btn-sm">Update Section</button>
                 </form>
             </div>
         </div>

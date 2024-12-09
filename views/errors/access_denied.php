@@ -16,7 +16,7 @@
                     <h4 class="alert-heading">Acces interzis!</h4>
                     <p>Trebuie să fii administrator pentru a accesa această funcție.</p>
                     <hr>
-                    <p class="mb-0"><a href="/articole" class="btn btn-danger">Înapoi la articole</a></p>
+                    <p class="mb-0"><a href="/sections" class="btn btn-danger">Înapoi la sectiuni</a></p>
                 </div>
             </div>
         </div>
